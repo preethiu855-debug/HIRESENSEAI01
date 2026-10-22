@@ -1,0 +1,27 @@
+PRIYA SHARMA
+Email: priya.sharma@example.com | Phone: +91 91234 56789
+Location: Bangalore / Chennai | GitHub: github.com/priyasharma-ai | LinkedIn: linkedin.com/in/priyasharma
+
+CAREER OBJECTIVE
+Aspiring Data Scientist and AI Engineer looking to leverage strong analytical abilities and proficiency in Python, Pandas, Machine Learning, and Generative AI to solve impactful data problems.
+
+EDUCATION
+Bachelor of Technology (B.Tech) in Information Technology
+PSG College of Technology, Coimbatore | 2021 – 2025 | CGPA: 8.8/10
+
+TECHNICAL SKILLS
+• Programming: Python, SQL
+• Data Science & ML: Pandas, NumPy, Scikit-learn, Machine Learning, NLP
+• AI & GenAI: Generative AI, Prompt Engineering, LangChain, Gemini API
+• Tools: Git, GitHub, Jupyter Notebook, Postman
+
+KEY PROJECTS
+1. Customer Churn Prediction Engine (Python, Pandas, Scikit-Learn)
+   - Cleaned and prepared large tabular datasets using Pandas and NumPy.
+   - Built classification models achieving 87% accuracy with hyperparameter tuning.
+2. AI Document Summarizer & QA Assistant (Python, Generative AI, Streamlit)
+   - Created an intelligent document analysis bot using LLM API embeddings and prompt engineering.
+
+CERTIFICATIONS & ACHIEVEMENTS
+• Machine Learning Specialization - Coursera
+• Top 10 finalist in National AI Hackathon 2024

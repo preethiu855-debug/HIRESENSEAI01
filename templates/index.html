@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HireSense AI — Find Your Match. Build Your Skills. Get Career-Ready.</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <!-- Top Navigation Header -->
+    <header class="app-header">
+        <div class="header-container">
+            <div class="brand">
+                <div class="brand-icon">⚡</div>
+                <div>
+                    <h1 class="brand-title">HireSense <span class="gradient-text">AI</span></h1>
+                    <p class="brand-tagline">Find Your Match. Build Your Skills. Get Career-Ready.</p>
+                </div>
+            </div>
+
+            <!-- Global Status & Quick Controls -->
+            <div class="header-actions">
+                <div class="live-indicator">
+                    <span class="pulsing-dot"></span>
+                    <span id="liveFeedStatusText">Live Feed Active</span>
+                </div>
+                <button class="btn btn-secondary btn-sm" id="btnSimulateAlert">
+                    <span>⚡ Simulate New Job Alert</span>
+                </button>
+                <div class="profile-chip" id="headerProfileChip">
+                    <div class="avatar" id="headerAvatar">?</div>
+                    <span id="headerProfileName">No Profile Loaded</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main App Container -->
+    <main class="main-container">
+        <!-- Interactive Workflow Stage Bar -->
+        <section class="workflow-stepper">
+            <div class="step-item active" data-tab="tab-dashboard">
+                <span class="step-num">1</span>
+                <span class="step-label">Overview & Dashboard</span>
+            </div>
+            <div class="step-divider"></div>
+            <div class="step-item" data-tab="tab-profile">
+                <span class="step-num">2</span>
+                <span class="step-label">Profile & Resume</span>
+            </div>
+            <div class="step-divider"></div>
+            <div class="step-item" data-tab="tab-matching">
+                <span class="step-num">3</span>
+                <span class="step-label">AI Job Matching</span>
+            </div>
+            <div class="step-divider"></div>
+            <div class="step-item" data-tab="tab-skills">
+                <span class="step-num">4</span>
+                <span class="step-label">Skill Gap & Roadmap</span>
+            </div>
+            <div class="step-divider"></div>
+            <div class="step-item" data-tab="tab-jobs">
+                <span class="step-num">5</span>
+                <span class="step-label">Live Vacancies & Feed</span>
+            </div>
+        </section>
+
+        <!-- Notification Toast Container -->
+        <div id="toastContainer" class="toast-container"></div>
+
+        <!-- ================= TAB 1: DASHBOARD OVERVIEW ================= -->
+        <div id="tab-dashboard" class="tab-pane active">
+            <!-- Hero Banner -->
+            <div class="hero-card">
+                <div class="hero-content">
+                    <div class="badge-pill">🎓 AI-Powered Career Assistant & Real-Time Matcher</div>
+                    <h2>Welcome to <span class="gradient-text">HireSense AI</span></h2>
+                    <p>Oru job seeker application open pannumbodhu, AI suitable-aana jobs-ai identify panni, career improve panna step-by-step guidance kudukkum.</p>
+                    
+                    <div class="hero-actions">
+                        <button class="btn btn-primary" onclick="switchTab('tab-profile')">
+                            📄 Upload Resume or Pick Sample Profile
+                        </button>
+                        <button class="btn btn-outline" onclick="loadSampleProfile('frontend')">
+                            ⚡ Try 1-Click Demo (Frontend Role)
+                        </button>
+                        <button class="btn btn-outline" onclick="switchTab('tab-jobs')">
+                            🔍 Browse Live Vacancies
+                        </button>
+                    </div>
+                </div>
+
+                <div class="hero-metrics">
+                    <div class="metric-card">
+                        <div class="metric-icon">🤖</div>
+                        <div class="metric-info">
+                            <span class="metric-value" id="statMatchScore">0%</span>
+                            <span class="metric-label">Best Match Score</span>
+                        </div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-icon">💼</div>
+                        <div class="metric-info">
+                            <span class="metric-value" id="statTotalJobs">6</span>
+                            <span class="metric-label">Live Job Vacancies</span>
+                        </div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-icon">🎯</div>
+                        <div class="metric-info">
+                            <span class="metric-value" id="statExtractedSkills">0</span>
+                            <span class="metric-label">Skills Extracted</span>
+                        </div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-icon">⚡</div>
+                        <div class="metric-info">
+                            <span class="metric-value">Real-Time</span>
+                            <span class="metric-label">Instant Vacancy Alerts</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Workflow Highlights Grid (5 Core Features) -->
+            <div class="section-title-wrap">
+                <h3>💎 5 Core Application Features</h3>
+                <p>Designed for Tamil students and job seekers to get hired faster.</p>
+            </div>
+
+            <div class="features-grid">
+                <div class="feature-card" onclick="switchTab('tab-matching')">
+                    <div class="feature-icon bg-indigo">🤖</div>
+                    <h4>1. AI Job Matcher</h4>
+                    <p>Calculates match percentages against real vacancies based on your extracted resume skills.</p>
+                    <span class="feature-link">Explore Matcher →</span>
+                </div>
+
+                <div class="feature-card" onclick="switchTab('tab-jobs')">
+                    <div class="feature-icon bg-emerald">📡</div>
+                    <h4>2. Real-Time Job Feed</h4>
+                    <p>Continuously pulls vacancies across Frontend, Backend, AI, and DevOps roles.</p>
+                    <span class="feature-link">View Live Feed →</span>
+                </div>
+
+                <div class="feature-card" onclick="switchTab('tab-profile')">
+                    <div class="feature-icon bg-purple">📄</div>
+                    <h4>3. Resume Analyzer</h4>
+                    <p>Instantly extracts technical skills, education, and domain level from PDF or text.</p>
+                    <span class="feature-link">Upload Resume →</span>
+                </div>
+
+                <div class="feature-card" onclick="switchTab('tab-skills')">
+                    <div class="feature-icon bg-amber">🎯</div>
+                    <h4>4. Skill Gap Analyzer</h4>
+                    <p>Pinpoints the exact missing skills between your resume and your target dream role.</p>
+                    <span class="feature-link">Check Skill Gaps →</span>
+                </div>
+
+                <div class="feature-card" onclick="switchTab('tab-skills')">
+                    <div class="feature-icon bg-rose">🧭</div>
+                    <h4>5. AI Career Assistant</h4>
+                    <p>4-Week personalized learning roadmap, ATS resume tips, and curated interview questions.</p>
+                    <span class="feature-link">View Career Plan →</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= TAB 2: PROFILE & RESUME UPLOAD ================= -->
+        <div id="tab-profile" class="tab-pane">
+            <div class="grid-2-col">
+                <!-- Left: Upload Box & Quick Profiles -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3>📄 Stage 2: Student Profile & Resume Upload</h3>
+                        <p class="card-desc">Upload your resume (PDF/Text) or select a sample ready-to-use profile.</p>
+                    </div>
+
+                    <!-- 1-Click Quick Samples -->
+                    <div class="sample-pills-box">
+                        <span class="pills-title">⚡ 1-Click Quick Demo Profiles:</span>
+                        <div class="sample-buttons">
+                            <button class="pill-btn" onclick="loadSampleProfile('frontend')">
+                                💻 Frontend Dev (Arun)
+                            </button>
+                            <button class="pill-btn" onclick="loadSampleProfile('ai_data')">
+                                🤖 AI & Data Science (Priya)
+                            </button>
+                            <button class="pill-btn" onclick="loadSampleProfile('fullstack')">
+                                🌐 Full Stack MERN (Karthik)
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="divider-text">OR UPLOAD YOUR OWN RESUME</div>
+
+                    <!-- Drag & Drop Upload Area -->
+                    <div class="dropzone" id="resumeDropzone">
+                        <div class="dropzone-icon">📁</div>
+                        <h4>Drag and drop your Resume PDF here</h4>
+                        <p>or click to browse from your computer (PDF or TXT)</p>
+                        <input type="file" id="resumeFileInput" accept=".pdf,.txt" style="display:none;">
+                        <button class="btn btn-secondary btn-sm" onclick="document.getElementById('resumeFileInput').click()">
+                            Browse File
+                        </button>
+                    </div>
+
+                    <!-- Direct Text Input Alternative -->
+                    <div class="text-input-section">
+                        <label for="rawResumeText">Or paste your resume / skills text:</label>
+                        <textarea id="rawResumeText" rows="4" placeholder="Example: Arun Kumar. B.E CSE Fresher. Skills: HTML, CSS, JavaScript, React, Git. Target: Frontend Developer."></textarea>
+                        <button class="btn btn-primary btn-block" id="btnAnalyzeText">
+                            🚀 Analyze Resume with AI
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Right: Extracted Profile Result -->
+                <div class="card" id="extractedProfileCard">
+                    <div class="card-header">
+                        <h3>🔍 Extracted Profile Intelligence</h3>
+                        <span class="badge" id="resumeStatusBadge">Waiting for Input</span>
+                    </div>
+
+                    <div id="profileEmptyState" class="empty-state">
+                        <div class="empty-icon">📝</div>
+                        <h4>No Resume Loaded Yet</h4>
+                        <p>Upload a PDF resume or click one of the 1-click sample profiles on the left to extract skills automatically.</p>
+                    </div>
+
+                    <div id="profileDataView" style="display: none;">
+                        <div class="user-summary-box">
+                            <div class="user-avatar-lg" id="profileAvatarLg">AK</div>
+                            <div>
+                                <h3 id="profileNameDisplay">Arun Kumar</h3>
+                                <p class="text-muted" id="profileTitleDisplay">Aspiring Frontend Developer</p>
+                                <span class="tag-badge" id="profileExpDisplay">Fresher (0-1 yr)</span>
+                            </div>
+                        </div>
+
+                        <div class="profile-field">
+                            <label>Extracted Skills (<span id="skillCount">0</span> detected):</label>
+                            <div class="skills-tag-cloud" id="extractedSkillsCloud">
+                                <!-- Rendered dynamically -->
+                            </div>
+                        </div>
+
+                        <div class="profile-field">
+                            <label>Resume Snippet / Summary:</label>
+                            <p class="snippet-box" id="resumeSnippetDisplay">-</p>
+                        </div>
+
+                        <div class="profile-actions-bottom">
+                            <button class="btn btn-primary btn-block" onclick="runJobMatching()">
+                                🤖 Proceed to AI Job Matching →
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= TAB 3: AI JOB MATCHING ================= -->
+        <div id="tab-matching" class="tab-pane">
+            <div class="tab-header-flex">
+                <div>
+                    <h3>🤖 Stage 3: AI-Powered Job Matching</h3>
+                    <p class="text-muted">Jobs are evaluated and ranked automatically based on your extracted skills.</p>
+                </div>
+                <div class="match-summary-pills">
+                    <span class="pill-stat">Evaluated Jobs: <strong id="evaluatedJobsCount">0</strong></span>
+                    <span class="pill-stat">Top Match: <strong id="topMatchPercentage">0%</strong></span>
+                </div>
+            </div>
+
+            <div id="matchingEmptyPrompt" class="card empty-state">
+                <div class="empty-icon">🎯</div>
+                <h4>Analyze Your Resume First</h4>
+                <p>Please load or upload your resume in the "Profile & Resume" tab to calculate match scores.</p>
+                <button class="btn btn-primary" onclick="loadSampleProfile('frontend')">
+                    ⚡ Load Sample & Match Now
+                </button>
+            </div>
+
+            <div id="matchingResultsGrid" class="jobs-matching-grid" style="display: none;">
+                <!-- Matched Job Cards Rendered Dynamically -->
+            </div>
+        </div>
+
+        <!-- ================= TAB 4: SKILL GAP & AI CAREER ASSISTANT ================= -->
+        <div id="tab-skills" class="tab-pane">
+            <div class="tab-header-flex">
+                <div>
+                    <h3>🎯 Stage 4: Skill Gap Analyzer & AI Career Assistant</h3>
+                    <p class="text-muted">Targeting role: <strong id="targetRoleTitle">Select a job to analyze</strong></p>
+                </div>
+                <button class="btn btn-secondary btn-sm" onclick="switchTab('tab-matching')">
+                    ← Change Target Job
+                </button>
+            </div>
+
+            <div id="gapEmptyPrompt" class="card empty-state">
+                <div class="empty-icon">📊</div>
+                <h4>Select a Job to View Skill Gap & Guidance</h4>
+                <p>Run job matching and click "Analyze Skill Gap" on any job vacancy to generate your personalized 4-week roadmap.</p>
+                <button class="btn btn-primary" onclick="loadSampleProfile('frontend')">
+                    ⚡ Start Demo Experience
+                </button>
+            </div>
+
+            <div id="gapContentWrapper" style="display: none;">
+                <!-- Skill Breakdown Metric -->
+                <div class="grid-2-col gap-metrics-grid">
+                    <div class="card">
+                        <h4>✅ Skills You Already Have</h4>
+                        <p class="text-muted">Skills from your profile that directly match this job.</p>
+                        <div class="skills-tag-cloud" id="skillsHaveList">
+                            <!-- Filled dynamically -->
+                        </div>
+                    </div>
+
+                    <div class="card card-warning-border">
+                        <h4>⚡ Skills You Need to Learn (Skill Gap)</h4>
+                        <p class="text-muted">Missing requirements to reach 100% readiness for this role.</p>
+                        <div class="skills-tag-cloud" id="skillsMissingList">
+                            <!-- Filled dynamically -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 4-Week Career Roadmap -->
+                <div class="card mt-20">
+                    <div class="card-header">
+                        <div class="header-icon-title">
+                            <span class="icon-circle bg-purple">🧭</span>
+                            <div>
+                                <h3>Personalized 4-Week Learning Roadmap</h3>
+                                <p class="card-desc">Step-by-step career acceleration plan crafted by HireSense AI.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="roadmap-timeline" id="roadmapTimeline">
+                        <!-- Filled dynamically -->
+                    </div>
+                </div>
+
+                <!-- Resume Optimization Tips & Interview Q&A -->
+                <div class="grid-2-col mt-20">
+                    <div class="card">
+                        <div class="header-icon-title">
+                            <span class="icon-circle bg-indigo">📝</span>
+                            <div>
+                                <h4>ATS Resume Optimization Tips</h4>
+                                <p class="text-muted">Actionable suggestions to improve interview callbacks.</p>
+                            </div>
+                        </div>
+                        <ul class="tips-list" id="resumeTipsList">
+                            <!-- Filled dynamically -->
+                        </ul>
+                    </div>
+
+                    <div class="card">
+                        <div class="header-icon-title">
+                            <span class="icon-circle bg-emerald">🎙️</span>
+                            <div>
+                                <h4>Role-Specific Interview Prep</h4>
+                                <p class="text-muted">High-frequency technical questions & winning response strategies.</p>
+                            </div>
+                        </div>
+                        <div class="qa-accordion" id="interviewQaList">
+                            <!-- Filled dynamically -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= TAB 5: LIVE VACANCIES & REAL-TIME FEED ================= -->
+        <div id="tab-jobs" class="tab-pane">
+            <div class="feed-controls-card">
+                <div class="feed-controls-header">
+                    <div>
+                        <h3>📡 Live Job Vacancies & Real-Time Feed</h3>
+                        <p class="text-muted">Connected job sources-la irundhu current vacancies display aagudhu.</p>
+                    </div>
+                    <div class="feed-actions">
+                        <button class="btn btn-primary" id="btnSimulateFeed">
+                            ⚡ Post New Live Vacancy (Trigger Alert)
+                        </button>
+                        <button class="btn btn-outline btn-sm" id="btnResetJobs">
+                            🔄 Reset Feed
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Search & Filters -->
+                <div class="filter-bar">
+                    <input type="text" id="jobSearchInput" placeholder="🔍 Search by job title, company, or skill (e.g. React, Python, Remote)...">
+                    <div class="category-pills">
+                        <button class="cat-pill active" data-cat="All">All Jobs</button>
+                        <button class="cat-pill" data-cat="Frontend">Frontend</button>
+                        <button class="cat-pill" data-cat="AI / Data Science">AI & Data</button>
+                        <button class="cat-pill" data-cat="Full Stack">Full Stack</button>
+                        <button class="cat-pill" data-cat="Backend">Backend</button>
+                        <button class="cat-pill" data-cat="DevOps">DevOps</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Job Feed Cards Grid -->
+            <div class="live-jobs-list" id="liveJobsContainer">
+                <!-- Rendered dynamically -->
+            </div>
+        </div>
+    </main>
+
+    <!-- Job Application / Details Modal -->
+    <div class="modal-overlay" id="jobModalOverlay">
+        <div class="modal-dialog">
+            <div class="modal-header">
+                <div>
+                    <h3 id="modalJobTitle">Job Details</h3>
+                    <p class="text-muted" id="modalJobCompany">Company</p>
+                </div>
+                <button class="modal-close" onclick="closeJobModal()">&times;</button>
+            </div>
+            <div class="modal-body" id="modalJobBody">
+                <!-- Injected via JS -->
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline" onclick="closeJobModal()">Close</button>
+                <button class="btn btn-primary" id="modalApplyBtn" onclick="applyJobAction()">🚀 Quick Apply</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Alert Audio Chime (Synthesized via Web Audio API, works in all browsers) -->
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>

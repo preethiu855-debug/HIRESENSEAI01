@@ -1,0 +1,26 @@
+ARUN KUMAR
+Email: arun.kumar@example.com | Phone: +91 98765 43210
+Location: Chennai, Tamil Nadu | GitHub: github.com/arunkumar-dev | LinkedIn: linkedin.com/in/arunkumar
+
+CAREER OBJECTIVE
+Enthusiastic and detail-oriented Computer Science graduate seeking an entry-level Frontend Developer position to utilize technical skills in HTML5, CSS3, JavaScript, and React to build high-performance web applications.
+
+EDUCATION
+Bachelor of Engineering (B.E) in Computer Science & Engineering
+Anna University, Chennai | 2021 – 2025 | CGPA: 8.4/10
+
+TECHNICAL SKILLS
+• Programming & Web: HTML5, CSS3, JavaScript (ES6+), React.js, Redux, Tailwind CSS
+• Tools & Platforms: Git, GitHub, VS Code, REST API, Postman
+• Database Basics: SQL, MongoDB
+
+ACADEMIC & PERSONAL PROJECTS
+1. E-Commerce Product Catalog (React, JavaScript, Tailwind CSS)
+   - Developed a responsive multi-page web application featuring dynamic filtering, cart management, and search.
+   - Consumed third-party RESTful APIs with asynchronous JavaScript (Fetch API).
+2. Portfolio & Task Tracker (HTML, CSS, JavaScript)
+   - Built a customizable Kanban-style task management web app using localStorage and CSS Grid/Flexbox.
+
+CERTIFICATIONS
+• Modern React with Redux - Udemy
+• Responsive Web Design Certification - freeCodeCamp
